@@ -1,0 +1,40 @@
+{
+    "name": "foodticket/wolt",
+    "description": "A PHP client to integrate with the Wolt API",
+    "keywords": ["Foodticket", "PHP", "Wolt", "delivery", "api client"],
+    "type": "library",
+    "license": "MIT",
+    "require": {
+        "php": "^8.2",
+        "laravel/framework": "^11.0|^12.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^9.0|^10.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Foodticket\\Wolt\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests"
+        }
+    },
+    "authors": [
+        {
+            "name": "Rik",
+            "email": "rik@foodticket.nl",
+            "homepage": "https://foodticket.nl",
+            "role": "Developer"
+        }
+    ],
+    "minimum-stability": "stable",
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Foodticket\\Wolt\\WoltServiceProvider"
+            ]
+        }
+    }
+}
