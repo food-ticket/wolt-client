@@ -25,6 +25,22 @@ class WoltApi
     }
 
     /**
+     * Retrieve the venues associated with the given per-venue access token.
+     * Use this after an OAuth authorization code exchange, not with the
+     * client-credentials token managed by WoltOauthClient.
+     *
+     * @throws RequestException
+     * @throws ConnectionException
+     */
+    public function getVenues(string $accessToken): array
+    {
+        return $this->requestWithToken($accessToken)
+            ->get('/v1/venues')
+            ->throw()
+            ->json();
+    }
+
+    /**
      * @throws RequestException
      * @throws ConnectionException
      */
@@ -82,8 +98,13 @@ class WoltApi
      */
     private function request(): PendingRequest
     {
+        return $this->requestWithToken($this->oauthClient->getAccessToken());
+    }
+
+    private function requestWithToken(string $accessToken): PendingRequest
+    {
         return Http::baseUrl($this->getBaseUrl())
             ->asJson()
-            ->withToken($this->oauthClient->getAccessToken());
+            ->withToken($accessToken);
     }
 }
