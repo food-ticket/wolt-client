@@ -4,14 +4,19 @@ declare(strict_types=1);
 
 namespace Foodticket\Wolt;
 
+use Foodticket\Wolt\Endpoints\ManagesMenu;
+use Foodticket\Wolt\Endpoints\ManagesOrders;
+use Foodticket\Wolt\Endpoints\ManagesVenues;
 use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Http\Client\PendingRequest;
-use Illuminate\Http\Client\RequestException;
-use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
 
 class WoltApi
 {
+    use ManagesMenu;
+    use ManagesOrders;
+    use ManagesVenues;
+
     public function __construct(private readonly WoltOauthClient $oauthClient)
     {
         //
@@ -22,75 +27,6 @@ class WoltApi
         return app()->isProduction()
             ? 'https://pos-integration-service.wolt.com'
             : 'https://pos-integration-service.development.dev.woltapi.com';
-    }
-
-    /**
-     * Retrieve the venues associated with the given per-venue access token.
-     * Use this after an OAuth authorization code exchange, not with the
-     * client-credentials token managed by WoltOauthClient.
-     *
-     * @throws RequestException
-     * @throws ConnectionException
-     */
-    public function getVenues(string $accessToken): array
-    {
-        return $this->requestWithToken($accessToken)
-            ->get('/v1/venues')
-            ->throw()
-            ->json();
-    }
-
-    /**
-     * @throws RequestException
-     * @throws ConnectionException
-     */
-    public function getOrder(string $orderId): ?array
-    {
-        $response = $this->request()->get("/v1/orders/{$orderId}");
-
-        if ($response->successful()) {
-            return $response->json();
-        }
-
-        $response->throw();
-
-        return null;
-    }
-
-    /**
-     * @throws ConnectionException
-     * @throws RequestException
-     */
-    public function acceptOrder(string $orderId): Response
-    {
-        return $this->request()->put("/v1/orders/{$orderId}/accept");
-    }
-
-    /**
-     * @throws ConnectionException
-     * @throws RequestException
-     */
-    public function rejectOrder(string $orderId): Response
-    {
-        return $this->request()->put("/v1/orders/{$orderId}/reject");
-    }
-
-    /**
-     * @throws ConnectionException
-     * @throws RequestException
-     */
-    public function markOrderReady(string $orderId): Response
-    {
-        return $this->request()->put("/v1/orders/{$orderId}/ready");
-    }
-
-    /**
-     * @throws ConnectionException
-     * @throws RequestException
-     */
-    public function markOrderDelivered(string $orderId): Response
-    {
-        return $this->request()->put("/v1/orders/{$orderId}/delivered");
     }
 
     /**

@@ -101,9 +101,18 @@ use Foodticket\Wolt\WoltApi;
 
 $api = app(WoltApi::class);
 
+// Orders
 $api->getOrder($orderId);
 $api->acceptOrder($orderId);
 $api->rejectOrder($orderId);
 $api->markOrderReady($orderId);
 $api->markOrderDelivered($orderId);
+
+// Venues
+$api->getVenues($accessToken);
+
+// Menu
+$api->getMenu($venueId);
+$api->updateMenu($venueId, $menuArray);
+$api->updateItemAvailability($venueId, $itemId, enabled: true);
 ```
