@@ -1,6 +1,6 @@
 {
     "name": "foodticket/wolt",
-    "description": "A PHP client to integrate with the Wolt API",
+    "description": "A Laravel client to integrate with the Wolt API",
     "keywords": ["Foodticket", "PHP", "Wolt", "delivery", "api client"],
     "type": "library",
     "license": "MIT",
@@ -22,6 +22,12 @@
         }
     },
     "authors": [
+        {
+            "name": "Foodticket",
+            "email": "developer@foodticket.nl",
+            "homepage": "https://foodticket.nl",
+            "role": "Developer"
+        },
         {
             "name": "Rik",
             "email": "rik@foodticket.nl",
