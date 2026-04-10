@@ -18,7 +18,7 @@ return [
     | Defaults to "production" when APP_ENV is "production", otherwise "test".
     |
     */
-    'environment' => env('WOLT_ENVIRONMENT', app()->isProduction() ? 'production' : 'test'),
+    'environment' => env('WOLT_ENVIRONMENT', env('APP_ENV') === 'production' ? 'production' : 'test'),
 
     /*
     |--------------------------------------------------------------------------
