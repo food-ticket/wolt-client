@@ -11,6 +11,20 @@ use Illuminate\Http\Client\Response;
 trait ManagesMenu
 {
     /**
+     * Create or replace the menu for a venue.
+     *
+     * @throws RequestException
+     * @throws ConnectionException
+     */
+    public function createMenu(string $venueId, array $menu): array
+    {
+        return $this->request()
+            ->post("/v1/restaurants/{$venueId}/menu", $menu)
+            ->throw()
+            ->json();
+    }
+
+    /**
      * Retrieve the current menu for a venue.
      *
      * @throws RequestException
@@ -19,34 +33,47 @@ trait ManagesMenu
     public function getMenu(string $venueId): array
     {
         return $this->request()
-            ->get("/v1/venues/{$venueId}/menu")
+            ->get("/v2/venues/{$venueId}/menu")
             ->throw()
             ->json();
     }
 
     /**
-     * Push a full menu to a venue, replacing the existing one.
+     * Update inventory/stock levels for menu items.
      *
      * @throws RequestException
      * @throws ConnectionException
      */
-    public function updateMenu(string $venueId, array $menu): Response
+    public function updateItemInventory(string $venueId, array $data): Response
     {
         return $this->request()
-            ->post("/v1/venues/{$venueId}/menu", $menu)
+            ->patch("/venues/{$venueId}/items/inventory", $data)
             ->throw();
     }
 
     /**
-     * Update the availability of a single item.
+     * Update item details (pricing, availability, enabled status).
      *
      * @throws RequestException
      * @throws ConnectionException
      */
-    public function updateItemAvailability(string $venueId, string $itemId, bool $available): Response
+    public function updateItems(string $venueId, array $data): Response
     {
         return $this->request()
-            ->put("/v1/venues/{$venueId}/items/{$itemId}", ['enabled' => $available])
+            ->patch("/venues/{$venueId}/items", $data)
+            ->throw();
+    }
+
+    /**
+     * Update option values and configurations.
+     *
+     * @throws RequestException
+     * @throws ConnectionException
+     */
+    public function updateOptions(string $venueId, array $data): Response
+    {
+        return $this->request()
+            ->patch("/venues/{$venueId}/options/values", $data)
             ->throw();
     }
 }

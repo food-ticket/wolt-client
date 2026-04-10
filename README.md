@@ -103,16 +103,37 @@ $api = app(WoltApi::class);
 
 // Orders
 $api->getOrder($orderId);
+$api->getOrderV2($orderId);
 $api->acceptOrder($orderId);
+$api->acceptSelfDeliveryOrder($orderId);
 $api->rejectOrder($orderId);
 $api->markOrderReady($orderId);
+$api->markPickupCompleted($orderId);
+$api->markCourierAtCustomer($orderId);
 $api->markOrderDelivered($orderId);
+$api->confirmPreorder($orderId);
+$api->replaceItems($orderId, itemChanges: [...], itemAdditions: [...]);
+$api->markSentToPos($orderId);
+$api->markDepositsReturned($orderId);
+$api->refundItems($orderId, $data);
+$api->refundBasket($orderId, $data);
+$api->updateDeliveryLocation($orderId, $location);
+$api->updateDeliveryEta($orderId, $data);
+$api->getDocumentUploadLink($orderId, 'INVOICE');
 
 // Venues
-$api->getVenues($accessToken);
+$api->getVenueStatus($venueId);
+$api->getDeliveryProvider($venueId);
+$api->updateDeliveryProvider($venueId, 'WOLT'); // or 'SELF_DELIVERY'
+$api->updateOnlineStatus($venueId, 'ONLINE');
+$api->updateOnlineStatus($venueId, 'OFFLINE', until: '2026-04-11T08:00:00Z');
+$api->updateOpeningTimes($venueId, $availability);
+$api->setSpecialOpeningTimes($venueId, $data);
 
 // Menu
-$api->getMenu($venueId);
-$api->updateMenu($venueId, $menuArray);
-$api->updateItemAvailability($venueId, $itemId, enabled: true);
+$api->createMenu($venueId, $menuArray);  // POST /v1/restaurants/{venueId}/menu
+$api->getMenu($venueId);                 // GET  /v2/venues/{venueId}/menu
+$api->updateItemInventory($venueId, $data);
+$api->updateItems($venueId, $data);
+$api->updateOptions($venueId, $data);
 ```
