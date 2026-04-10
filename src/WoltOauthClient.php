@@ -36,7 +36,7 @@ class WoltOauthClient
             ->post($this->getTokenUrl(), [
                 'grant_type' => 'authorization_code',
                 'code' => $code,
-                'redirect_url' => config('wolt.redirect_uri'),
+                'redirect_uri' => config('wolt.redirect_uri'),
             ]);
 
         $response->throw();
