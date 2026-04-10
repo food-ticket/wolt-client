@@ -27,32 +27,6 @@ WOLT_WEBHOOK_SECRET=
 WOLT_REDIRECT_URI=https://your-app.com/wolt/oauth/callback
 ```
 
-### Environment
-
-The package automatically selects the correct Wolt API endpoints based on your `APP_ENV`. When `APP_ENV=production`, production URLs are used; otherwise, the Wolt test/development URLs are used.
-
-You can override this by setting `WOLT_ENVIRONMENT` explicitly:
-
-```env
-WOLT_ENVIRONMENT=production  # or "test"
-```
-
-| Environment  | Token URL                                                                          | API Base URL                                                  |
-|--------------|------------------------------------------------------------------------------------|---------------------------------------------------------------|
-| `production` | `https://authentication.wolt.com/v1/wauth2/access_token`                          | `https://pos-integration-service.wolt.com`                    |
-| `test`       | `https://integrations-authentication-service.development.dev.woltapi.com/oauth2/token` | `https://pos-integration-service.development.dev.woltapi.com` |
-
-### URL Overrides
-
-To override specific URLs regardless of the environment, set any of the following:
-
-```env
-WOLT_TOKEN_URL=https://custom-auth-url.example.com/oauth2/token
-WOLT_BASE_URL=https://custom-api-url.example.com
-```
-
-When set, these always take precedence over the environment-derived URLs.
-
 ## Routes
 
 Register the Wolt routes in your `RouteServiceProvider`:

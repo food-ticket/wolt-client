@@ -31,13 +31,13 @@ class WoltOauthClient
      */
     public function exchangeCode(string $code): array
     {
-        $response = Http::asForm()->post($this->getTokenUrl(), [
-            'grant_type' => 'authorization_code',
-            'client_id' => config('wolt.client_id'),
-            'client_secret' => config('wolt.client_secret'),
-            'code' => $code,
-            'redirect_uri' => config('wolt.redirect_uri'),
-        ]);
+        $response = Http::asForm()
+            ->withBasicAuth(config('wolt.client_id'), config('wolt.client_secret'))
+            ->post($this->getTokenUrl(), [
+                'grant_type' => 'authorization_code',
+                'code' => $code,
+                'redirect_url' => config('wolt.redirect_uri'),
+            ]);
 
         $response->throw();
 
@@ -52,12 +52,12 @@ class WoltOauthClient
      */
     public function refreshAccessToken(string $refreshToken): array
     {
-        $response = Http::asForm()->post($this->getTokenUrl(), [
-            'grant_type' => 'refresh_token',
-            'client_id' => config('wolt.client_id'),
-            'client_secret' => config('wolt.client_secret'),
-            'refresh_token' => $refreshToken,
-        ]);
+        $response = Http::asForm()
+            ->withBasicAuth(config('wolt.client_id'), config('wolt.client_secret'))
+            ->post($this->getTokenUrl(), [
+                'grant_type' => 'refresh_token',
+                'refresh_token' => $refreshToken,
+            ]);
 
         $response->throw();
 
@@ -76,11 +76,11 @@ class WoltOauthClient
             return $cached;
         }
 
-        $response = Http::asForm()->post($this->getTokenUrl(), [
-            'grant_type' => 'client_credentials',
-            'client_id' => config('wolt.client_id'),
-            'client_secret' => config('wolt.client_secret'),
-        ]);
+        $response = Http::asForm()
+            ->withBasicAuth(config('wolt.client_id'), config('wolt.client_secret'))
+            ->post($this->getTokenUrl(), [
+                'grant_type' => 'client_credentials',
+            ]);
 
         $response->throw();
 
