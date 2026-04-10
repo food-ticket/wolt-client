@@ -13,11 +13,14 @@ class WoltOauthClient
 {
     private const string CACHE_KEY = 'api:wolt:ssio:accessToken';
 
+    private const array TOKEN_URLS = [
+        'production' => 'https://authentication.wolt.com/v1/wauth2/access_token',
+        'test' => 'https://integrations-authentication-service.development.dev.woltapi.com/oauth2/token',
+    ];
+
     public function getTokenUrl(): string
     {
-        return app()->isProduction()
-            ? 'https://authentication.wolt.com/v1/wauth2/access_token'
-            : 'https://authentication.development.dev.woltapi.com/v1/wauth2/access_token';
+        return config('wolt.token_url') ?? self::TOKEN_URLS[config('wolt.environment', 'production')];
     }
 
     /**

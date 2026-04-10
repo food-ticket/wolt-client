@@ -17,6 +17,11 @@ class WoltApi
     use ManagesOrders;
     use ManagesVenues;
 
+    private const array BASE_URLS = [
+        'production' => 'https://pos-integration-service.wolt.com',
+        'test' => 'https://pos-integration-service.development.dev.woltapi.com',
+    ];
+
     public function __construct(private readonly WoltOauthClient $oauthClient)
     {
         //
@@ -24,9 +29,7 @@ class WoltApi
 
     public function getBaseUrl(): string
     {
-        return app()->isProduction()
-            ? 'https://pos-integration-service.wolt.com'
-            : 'https://pos-integration-service.development.dev.woltapi.com';
+        return config('wolt.base_url') ?? self::BASE_URLS[config('wolt.environment', 'production')];
     }
 
     /**
