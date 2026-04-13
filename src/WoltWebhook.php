@@ -22,12 +22,12 @@ class WoltWebhook
 
     public function orderId(): string
     {
-        return Arr::get($this->payload, 'id');
+        return Arr::get($this->payload, 'order.id');
     }
 
-    public function venueId(): ?string
+    public function venueId(): string
     {
-        return Arr::get($this->payload, 'venue.external_venue_id');
+        return Arr::get($this->payload, 'order.venue_id');
     }
 
     public function payload(): array
