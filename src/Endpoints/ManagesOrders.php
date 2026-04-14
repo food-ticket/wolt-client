@@ -38,10 +38,10 @@ trait ManagesOrders
      * @throws RequestException
      * @throws ConnectionException
      */
-    public function acceptOrder(string $orderId): Response
+    public function acceptOrder(string $orderId, array $data = []): Response
     {
         return $this->request()
-            ->put("/orders/{$orderId}/accept")
+            ->put("/orders/{$orderId}/accept", $data)
             ->throw();
     }
 
@@ -49,10 +49,10 @@ trait ManagesOrders
      * @throws RequestException
      * @throws ConnectionException
      */
-    public function acceptSelfDeliveryOrder(string $orderId): Response
+    public function acceptSelfDeliveryOrder(string $orderId, array $data = []): Response
     {
         return $this->request()
-            ->put("/orders/{$orderId}/self-delivery/accept")
+            ->put("/orders/{$orderId}/self-delivery/accept", $data)
             ->throw();
     }
 
@@ -60,10 +60,10 @@ trait ManagesOrders
      * @throws RequestException
      * @throws ConnectionException
      */
-    public function rejectOrder(string $orderId): Response
+    public function rejectOrder(string $orderId, array $data = []): Response
     {
         return $this->request()
-            ->put("/orders/{$orderId}/reject")
+            ->put("/orders/{$orderId}/reject", $data)
             ->throw();
     }
 
@@ -71,10 +71,10 @@ trait ManagesOrders
      * @throws RequestException
      * @throws ConnectionException
      */
-    public function markOrderReady(string $orderId): Response
+    public function markOrderReady(string $orderId, array $data = []): Response
     {
         return $this->request()
-            ->put("/orders/{$orderId}/ready")
+            ->put("/orders/{$orderId}/ready", $data)
             ->throw();
     }
 
@@ -82,10 +82,10 @@ trait ManagesOrders
      * @throws RequestException
      * @throws ConnectionException
      */
-    public function markPickupCompleted(string $orderId): Response
+    public function markPickupCompleted(string $orderId, array $data = []): Response
     {
         return $this->request()
-            ->put("/orders/{$orderId}/pickup-completed")
+            ->put("/orders/{$orderId}/pickup-completed", $data)
             ->throw();
     }
 
@@ -93,10 +93,10 @@ trait ManagesOrders
      * @throws RequestException
      * @throws ConnectionException
      */
-    public function markCourierAtCustomer(string $orderId): Response
+    public function markCourierAtCustomer(string $orderId, array $data = []): Response
     {
         return $this->request()
-            ->put("/orders/{$orderId}/courier-at-customer")
+            ->put("/orders/{$orderId}/courier-at-customer", $data)
             ->throw();
     }
 
@@ -104,10 +104,10 @@ trait ManagesOrders
      * @throws RequestException
      * @throws ConnectionException
      */
-    public function markOrderDelivered(string $orderId): Response
+    public function markOrderDelivered(string $orderId, array $data = []): Response
     {
         return $this->request()
-            ->put("/orders/{$orderId}/delivered")
+            ->put("/orders/{$orderId}/delivered", $data)
             ->throw();
     }
 
@@ -115,10 +115,10 @@ trait ManagesOrders
      * @throws RequestException
      * @throws ConnectionException
      */
-    public function confirmPreorder(string $orderId): Response
+    public function confirmPreorder(string $orderId, array $data = []): Response
     {
         return $this->request()
-            ->put("/orders/{$orderId}/confirm-preorder")
+            ->put("/orders/{$orderId}/confirm-preorder", $data)
             ->throw();
     }
 
@@ -140,10 +140,10 @@ trait ManagesOrders
      * @throws RequestException
      * @throws ConnectionException
      */
-    public function markSentToPos(string $orderId): Response
+    public function markSentToPos(string $orderId, array $data = []): Response
     {
         return $this->request()
-            ->put("/orders/{$orderId}/sent-to-pos")
+            ->put("/orders/{$orderId}/sent-to-pos", $data)
             ->throw();
     }
 
@@ -151,10 +151,10 @@ trait ManagesOrders
      * @throws RequestException
      * @throws ConnectionException
      */
-    public function markDepositsReturned(string $orderId): Response
+    public function markDepositsReturned(string $orderId, array $data = []): Response
     {
         return $this->request()
-            ->put("/orders/{$orderId}/deposits-returned")
+            ->put("/orders/{$orderId}/deposits-returned", $data)
             ->throw();
     }
 
