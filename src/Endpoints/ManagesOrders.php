@@ -41,6 +41,7 @@ trait ManagesOrders
     public function acceptOrder(string $orderId, array $data = []): Response
     {
         return $this->request()
+            ->asJson()
             ->put("/orders/{$orderId}/accept", $data)
             ->throw();
     }
