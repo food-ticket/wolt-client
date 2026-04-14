@@ -43,7 +43,7 @@ trait ManagesMenu
      *
      * @throws ConnectionException
      */
-    public function updateItemInventory(string $venueId, array $data): Response
+    public function updateItemInventory(string $venueId, $data): Response
     {
         return $this->request()
             ->patch("/venues/{$venueId}/items/inventory", $data);
@@ -54,7 +54,7 @@ trait ManagesMenu
      *
      * @throws ConnectionException
      */
-    public function updateItems(string $venueId, array $data): Response
+    public function updateItems(string $venueId, $data): Response
     {
         return $this->request()
             ->patch("/venues/{$venueId}/items", $data);
@@ -65,7 +65,7 @@ trait ManagesMenu
      *
      * @throws ConnectionException
      */
-    public function updateOptions(string $venueId, array $data): Response
+    public function updateOptions(string $venueId, $data): Response
     {
         return $this->request()
             ->patch("/venues/{$venueId}/options/values", $data);

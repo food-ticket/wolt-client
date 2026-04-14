@@ -71,7 +71,7 @@ trait ManagesVenues
     /**
      * @throws ConnectionException
      */
-    public function setSpecialOpeningTimes(string $venueId, array $data): Response
+    public function setSpecialOpeningTimes(string $venueId, $data): Response
     {
         return $this->request()
             ->put("/venues/{$venueId}/special-opening-times", $data);
