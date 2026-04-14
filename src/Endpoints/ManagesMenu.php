@@ -41,39 +41,33 @@ trait ManagesMenu
     /**
      * Update inventory/stock levels for menu items.
      *
-     * @throws RequestException
      * @throws ConnectionException
      */
     public function updateItemInventory(string $venueId, array $data): Response
     {
         return $this->request()
-            ->patch("/venues/{$venueId}/items/inventory", $data)
-            ->throw();
+            ->patch("/venues/{$venueId}/items/inventory", $data);
     }
 
     /**
      * Update item details (pricing, availability, enabled status).
      *
-     * @throws RequestException
      * @throws ConnectionException
      */
     public function updateItems(string $venueId, array $data): Response
     {
         return $this->request()
-            ->patch("/venues/{$venueId}/items", $data)
-            ->throw();
+            ->patch("/venues/{$venueId}/items", $data);
     }
 
     /**
      * Update option values and configurations.
      *
-     * @throws RequestException
      * @throws ConnectionException
      */
     public function updateOptions(string $venueId, array $data): Response
     {
         return $this->request()
-            ->patch("/venues/{$venueId}/options/values", $data)
-            ->throw();
+            ->patch("/venues/{$venueId}/options/values", $data);
     }
 }

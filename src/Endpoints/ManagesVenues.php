@@ -35,7 +35,6 @@ trait ManagesVenues
     }
 
     /**
-     * @throws RequestException
      * @throws ConnectionException
      */
     public function updateDeliveryProvider(string $venueId, string $deliveryProvider): Response
@@ -43,12 +42,10 @@ trait ManagesVenues
         return $this->request()
             ->patch("/venues/{$venueId}/delivery-provider", [
                 'delivery_provider' => $deliveryProvider,
-            ])
-            ->throw();
+            ]);
     }
 
     /**
-     * @throws RequestException
      * @throws ConnectionException
      */
     public function updateOnlineStatus(string $venueId, string $status, ?string $until = null): Response
@@ -57,12 +54,10 @@ trait ManagesVenues
             ->patch("/venues/{$venueId}/online", array_filter([
                 'status' => $status,
                 'until' => $until,
-            ]))
-            ->throw();
+            ]));
     }
 
     /**
-     * @throws RequestException
      * @throws ConnectionException
      */
     public function updateOpeningTimes(string $venueId, array $availability): Response
@@ -70,18 +65,15 @@ trait ManagesVenues
         return $this->request()
             ->patch("/venues/{$venueId}/opening-times", [
                 'availability' => $availability,
-            ])
-            ->throw();
+            ]);
     }
 
     /**
-     * @throws RequestException
      * @throws ConnectionException
      */
     public function setSpecialOpeningTimes(string $venueId, array $data): Response
     {
         return $this->request()
-            ->put("/venues/{$venueId}/special-opening-times", $data)
-            ->throw();
+            ->put("/venues/{$venueId}/special-opening-times", $data);
     }
 }

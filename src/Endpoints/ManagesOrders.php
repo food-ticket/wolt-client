@@ -35,96 +35,79 @@ trait ManagesOrders
     }
 
     /**
-     * @throws RequestException
      * @throws ConnectionException
      */
     public function acceptOrder(string $orderId, array $data = []): Response
     {
         return $this->request()
             ->asJson()
-            ->put("/orders/{$orderId}/accept", $data)
-            ->throw();
+            ->put("/orders/{$orderId}/accept", $data);
     }
 
     /**
-     * @throws RequestException
      * @throws ConnectionException
      */
     public function acceptSelfDeliveryOrder(string $orderId, array $data = []): Response
     {
         return $this->request()
-            ->put("/orders/{$orderId}/self-delivery/accept", $data)
-            ->throw();
+            ->put("/orders/{$orderId}/self-delivery/accept", $data);
     }
 
     /**
-     * @throws RequestException
      * @throws ConnectionException
      */
     public function rejectOrder(string $orderId, array $data = []): Response
     {
         return $this->request()
-            ->put("/orders/{$orderId}/reject", $data)
-            ->throw();
+            ->put("/orders/{$orderId}/reject", $data);
     }
 
     /**
-     * @throws RequestException
      * @throws ConnectionException
      */
     public function markOrderReady(string $orderId, array $data = []): Response
     {
         return $this->request()
-            ->put("/orders/{$orderId}/ready", $data)
-            ->throw();
+            ->put("/orders/{$orderId}/ready", $data);
     }
 
     /**
-     * @throws RequestException
      * @throws ConnectionException
      */
     public function markPickupCompleted(string $orderId, array $data = []): Response
     {
         return $this->request()
-            ->put("/orders/{$orderId}/pickup-completed", $data)
-            ->throw();
+            ->put("/orders/{$orderId}/pickup-completed", $data);
     }
 
     /**
-     * @throws RequestException
      * @throws ConnectionException
      */
     public function markCourierAtCustomer(string $orderId, array $data = []): Response
     {
         return $this->request()
-            ->put("/orders/{$orderId}/courier-at-customer", $data)
-            ->throw();
+            ->put("/orders/{$orderId}/courier-at-customer", $data);
     }
 
     /**
-     * @throws RequestException
      * @throws ConnectionException
      */
     public function markOrderDelivered(string $orderId, array $data = []): Response
     {
         return $this->request()
-            ->put("/orders/{$orderId}/delivered", $data)
-            ->throw();
+            ->put("/orders/{$orderId}/delivered", $data);
     }
 
     /**
-     * @throws RequestException
      * @throws ConnectionException
      */
     public function confirmPreorder(string $orderId, array $data = []): Response
     {
         return $this->request()
-            ->put("/orders/{$orderId}/confirm-preorder", $data)
-            ->throw();
+            ->put("/orders/{$orderId}/confirm-preorder", $data);
     }
 
     /**
-     * @throws RequestException
      * @throws ConnectionException
      */
     public function replaceItems(string $orderId, array $itemChanges = [], array $itemAdditions = []): Response
@@ -133,74 +116,61 @@ trait ManagesOrders
             ->put("/orders/{$orderId}/replace-items", array_filter([
                 'item_changes' => $itemChanges,
                 'item_additions' => $itemAdditions,
-            ]))
-            ->throw();
+            ]));
     }
 
     /**
-     * @throws RequestException
      * @throws ConnectionException
      */
     public function markSentToPos(string $orderId, array $data = []): Response
     {
         return $this->request()
-            ->put("/orders/{$orderId}/sent-to-pos", $data)
-            ->throw();
+            ->put("/orders/{$orderId}/sent-to-pos", $data);
     }
 
     /**
-     * @throws RequestException
      * @throws ConnectionException
      */
     public function markDepositsReturned(string $orderId, array $data = []): Response
     {
         return $this->request()
-            ->put("/orders/{$orderId}/deposits-returned", $data)
-            ->throw();
+            ->put("/orders/{$orderId}/deposits-returned", $data);
     }
 
     /**
-     * @throws RequestException
      * @throws ConnectionException
      */
     public function refundItems(string $orderId, array $data): Response
     {
         return $this->request()
-            ->post("/orders/{$orderId}/refund-items", $data)
-            ->throw();
+            ->post("/orders/{$orderId}/refund-items", $data);
     }
 
     /**
-     * @throws RequestException
      * @throws ConnectionException
      */
     public function refundBasket(string $orderId, array $data): Response
     {
         return $this->request()
-            ->post("/orders/{$orderId}/refund-basket", $data)
-            ->throw();
+            ->post("/orders/{$orderId}/refund-basket", $data);
     }
 
     /**
-     * @throws RequestException
      * @throws ConnectionException
      */
     public function updateDeliveryLocation(string $orderId, array $location): Response
     {
         return $this->request()
-            ->put("/orders/{$orderId}/delivery/tracking/location", $location)
-            ->throw();
+            ->put("/orders/{$orderId}/delivery/tracking/location", $location);
     }
 
     /**
-     * @throws RequestException
      * @throws ConnectionException
      */
     public function updateDeliveryEta(string $orderId, array $data): Response
     {
         return $this->request()
-            ->put("/orders/{$orderId}/delivery/eta", $data)
-            ->throw();
+            ->put("/orders/{$orderId}/delivery/eta", $data);
     }
 
     /**
