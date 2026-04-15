@@ -37,7 +37,7 @@ trait ManagesOrders
     /**
      * @throws ConnectionException
      */
-    public function acceptOrder(string $orderId, $data = []): Response
+    public function acceptOrder(string $orderId, $data = null): Response
     {
         return $this->request()
             ->put("/orders/{$orderId}/accept", $data);
@@ -46,7 +46,7 @@ trait ManagesOrders
     /**
      * @throws ConnectionException
      */
-    public function acceptSelfDeliveryOrder(string $orderId, $data = []): Response
+    public function acceptSelfDeliveryOrder(string $orderId, $data = null): Response
     {
         return $this->request()
             ->put("/orders/{$orderId}/self-delivery/accept", $data);
@@ -55,7 +55,7 @@ trait ManagesOrders
     /**
      * @throws ConnectionException
      */
-    public function rejectOrder(string $orderId, $data = []): Response
+    public function rejectOrder(string $orderId, $data = null): Response
     {
         return $this->request()
             ->put("/orders/{$orderId}/reject", $data);
@@ -64,7 +64,7 @@ trait ManagesOrders
     /**
      * @throws ConnectionException
      */
-    public function markOrderReady(string $orderId, $data = []): Response
+    public function markOrderReady(string $orderId, $data = null): Response
     {
         return $this->request()
             ->put("/orders/{$orderId}/ready", $data);
@@ -73,7 +73,7 @@ trait ManagesOrders
     /**
      * @throws ConnectionException
      */
-    public function markPickupCompleted(string $orderId, $data = []): Response
+    public function markPickupCompleted(string $orderId, $data = null): Response
     {
         return $this->request()
             ->put("/orders/{$orderId}/pickup-completed", $data);
@@ -82,7 +82,7 @@ trait ManagesOrders
     /**
      * @throws ConnectionException
      */
-    public function markCourierAtCustomer(string $orderId, $data = []): Response
+    public function markCourierAtCustomer(string $orderId, $data = null): Response
     {
         return $this->request()
             ->put("/orders/{$orderId}/courier-at-customer", $data);
@@ -91,7 +91,7 @@ trait ManagesOrders
     /**
      * @throws ConnectionException
      */
-    public function markOrderDelivered(string $orderId, $data = []): Response
+    public function markOrderDelivered(string $orderId, $data = null): Response
     {
         return $this->request()
             ->put("/orders/{$orderId}/delivered", $data);
@@ -100,7 +100,7 @@ trait ManagesOrders
     /**
      * @throws ConnectionException
      */
-    public function confirmPreorder(string $orderId, $data = []): Response
+    public function confirmPreorder(string $orderId, $data = null): Response
     {
         return $this->request()
             ->put("/orders/{$orderId}/confirm-preorder", $data);
@@ -121,7 +121,7 @@ trait ManagesOrders
     /**
      * @throws ConnectionException
      */
-    public function markSentToPos(string $orderId, $data = []): Response
+    public function markSentToPos(string $orderId, $data = null): Response
     {
         return $this->request()
             ->put("/orders/{$orderId}/sent-to-pos", $data);
@@ -130,7 +130,7 @@ trait ManagesOrders
     /**
      * @throws ConnectionException
      */
-    public function markDepositsReturned(string $orderId, $data = []): Response
+    public function markDepositsReturned(string $orderId, $data = null): Response
     {
         return $this->request()
             ->put("/orders/{$orderId}/deposits-returned", $data);
