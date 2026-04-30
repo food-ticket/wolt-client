@@ -16,11 +16,11 @@ class WebhookController extends Controller
     public function handle(Request $request): JsonResponse
     {
         $secret = (string) config('wolt.client_secret');
-        $verifier = new WebhookSignature($secret);
-
-        if (! $verifier->verify($request->getContent(), $request->header(WebhookSignature::HEADER))) {
-            return response()->json(['status' => 'invalid_signature'], 401);
-        }
+//        $verifier = new WebhookSignature($secret);
+//
+//        if (! $verifier->verify($request->getContent(), $request->header(WebhookSignature::HEADER))) {
+//            return response()->json(['status' => 'invalid_signature'], 401);
+//        }
 
         $webhook = new WoltWebhook($request->json()->all(), $request->headers->all());
 
