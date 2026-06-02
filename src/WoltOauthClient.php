@@ -14,7 +14,7 @@ class WoltOauthClient
     private const string CACHE_KEY = 'api:wolt:ssio:accessToken';
 
     private const array TOKEN_URLS = [
-        'production' => 'https://authentication.wolt.com/v1/wauth2/access_token',
+        'production' => 'https://integrations-authentication-service.wolt.com/oauth2/token',
         'test' => 'https://integrations-authentication-service.development.dev.woltapi.com/oauth2/token',
     ];
 
